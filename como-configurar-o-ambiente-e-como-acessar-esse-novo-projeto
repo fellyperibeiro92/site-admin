@@ -1,0 +1,25 @@
+Curso feito pelo youtube no canal pycursos:
+https://www.youtube.com/playlist?list=PLPOyk_fKVcz5ilRDdKvqlM5ydOVkrmStQ
+
+- Primero acessar a pasta do projeto
+- cd PycharmProjects/nome-da-pasta-do-projeto enter
+- cd venv enter
+- python enter
+- Dentro do Python, verifica se o django está instalado com o comando import django enter
+- Para ver a versão django.get_version() enter
+- Saia do Python para começar a criar o projeto com a função exit() enter
+- Digite dir para ver se está na pasta venv
+- Entre na pasta scripts e execute dentro dela o activate.bat enter
+- Volte para a pasta anterior(venv) com cd ../ enter
+- PARA CRIAR UM NOVO PROJETO -> Digite django-admin startproject nomedoprojeto enter
+- Verifique se na pasta q está possui o arquivo manage.py, digite dir enter
+- Para simular um servidor e dar início ao projeto digite python manage.py runserver,
+com isso eu poderei ver o projeto pela web acessando localhost:8000, mas para que eu
+possa voltar a mexer no prompt, eu tenho q toda vez dar exit() e assim que aplicar algo novo e quiser visualizar, eu aplico o runserver
+- Saia do runserver pressionando crtl+pause/break
+- manage.py migrate enter
+- python manage.py startapp core enter
+- Vai ser criado uma pasta chamada core
+- Precisa movê-la para a mesma pasta do projeto
+- Então rode move core nomedoprojeto/ enter
+- Verifique se a pasta está no local correto

@@ -1,0 +1,78 @@
+install python
+install pip
+install virtualenv
+irtualenv venv -p /Library/Frameworks/Python.framework/Versions/3.5/bin/python3
+source {{name}}/bin/activate
+sudo pip install Django=={{version}}
+django-admin.py startproject {{name}}
+python manage.py runserver # start app on django
+python manage.py help
+python manage.py migrate auth # preforms migrations for auth and contenttypes contrib apps
+python manage.py makemigrations
+python manage.py migrate OR python manage.py migrate --run-syncdb # creates the rest of the database
+python manage.py startapp core # django is organized with apps
+
+### PATHS
+manage: especifica os comandos do django
+urls: especifica as urls em django (rotas)
+settings: configs da app
+
+### APPS
+- put core path on simplemock path
+- put on settings.py on INSTALLED_APPS 'simplemock.core'
+- put on urls.py on urlpatterns url(r'^$', 'simplemock.core.views.home', name='home')
+- put on core/views.py => def home(request): return HttpResponse("Hello World")
+
+### TEMPLATES
+- python manage.py shell # its the same iteractive shell
+  >>> from django.template import Template, Context
+  >>> template = Template("Wecome: {{ user }}")
+  >>> context = Context({"user": "Cristopher"})
+  >>> print(template.render(context))
+  Wecome: Cristopher
+- create on core DIR: static/css/style.css
+- create on core DIR: templates/home.html
+
+### URLS
+- Put on core DIR: urls.py => from django.conf.urls import url urlpatterns = [url(r'^$', 'simplemock.core.views.home', name='home'), #r indicates to regularExp to Python url(r'^contact/$', 'simplemock.core.views.contact', name='contact'), ]
+- Put on simplemock DIR: urls.py => url(r'^', include('simplemock.core.urls')),
+- see urls namespace and on view put namespace:url
+
+### SHELL TO SAVE INIT MODEL AND MANAGER
+python manage.py shell
+  >>> from simplemooc.courses.models import Course
+  >>> course = Course()
+  >>> course.name = 'Python & Django'
+  >>> course.slug = 'python_django'
+  >>> from datetime import date
+  >>> course.start_date = date.today()
+  >>> course.save()
+  >>> course.id
+  >>> course.pk
+- python manage.py sqlmigrate courses 0001_initial
+
+>>> from simplemooc.courses.models import Course
+>>> courses = Course.objects.all()
+>>> type(courses)
+<class 'django.db.models.query.QuerySet'>
+>>> type(Course.objects)
+<class 'django.db.models.manager.Manager'>
+
+### ADMIN
+python manage.py createsuperuser
+
+### FORMS
+python manage.py shell
+  >>> from simplemooc.courses.forms import ContactCourse
+  >>> form = ContactCourse()
+  >>> print(form.as_p()) #as_table
+
+form.is_valid()
+form.errors
+
+### EMAIL
+python manage.py shell
+  >>> from django.core.mail import send_mail
+  >>> dir(send_mail)
+  >>> help(send_mail)
+  >>> send_mail('Subj', 'Mess', 'email@email.com', ['email1@email.com'])
